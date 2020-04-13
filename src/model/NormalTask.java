@@ -8,10 +8,10 @@ public class NormalTask {
     public NormalTask() {
     }
 
-    public NormalTask(String title, String description, TaskStatus status) {
+    public NormalTask(String title, String description) {
         this.title = title;
         this.description = description;
-        this.status = status;
+        this.status = TaskStatus.incomplete;
     }
 
     public String getTitle() {
