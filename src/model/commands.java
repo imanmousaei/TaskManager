@@ -1,7 +1,7 @@
 package model;
 
 public class commands {
-    public String REMOVE = "rm";
-    public String ADD = "add";
-    public String EDIT = "edit";
+    public static String REMOVE = "rm";
+    public static String ADD = "add";
+    public static String EDIT = "edit";
 }
