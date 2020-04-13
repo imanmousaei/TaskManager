@@ -8,7 +8,7 @@ public class Date {
     private int day;
     private int hour;
     private int minute;
-    private int second ;
+    private int second;
 
     public Date() {
     }
@@ -22,34 +22,39 @@ public class Date {
         this.second = second;
     }
 
-    long getDueTimeInSecond(){
+    long getDueTimeInSecond() {
         return (long) (((((year * 12) + month) * 30 + day) * 24 + hour) * 60 + minute) * 60 + second;
     }
 
-    public static int getSystemYear(){
+    public static int getSystemYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
-    public static int getSystemMonth(){
+
+    public static int getSystemMonth() {
         return Calendar.getInstance().get(Calendar.MONTH);
     }
-    public static int getSystemDay(){
+
+    public static int getSystemDay() {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     }
-    public static int getSystemHour(){
+
+    public static int getSystemHour() {
         return Calendar.getInstance().get(Calendar.HOUR);
     }
-    public static int getSystemMinute(){
+
+    public static int getSystemMinute() {
         return Calendar.getInstance().get(Calendar.MINUTE);
     }
-    public static int getSystemSecond(){
+
+    public static int getSystemSecond() {
         return Calendar.getInstance().get(Calendar.SECOND);
     }
 
-    public static long getSystemTimeInSecond(){
+    public static long getSystemTimeInSecond() {
         return (long) (((((getSystemYear() * 12) + getSystemMonth()) * 30 + getSystemDay()) * 24 + getSystemHour()) * 60 + getSystemMinute()) * 60 + getSystemSecond();
     }
 
-    public long getRemainingTimeInSecond(){
+    public long getRemainingTimeInSecond() {
         return getDueTimeInSecond() - getSystemTimeInSecond();
     }
 
@@ -60,7 +65,7 @@ public class Date {
                 "/" + day +
                 " " + hour +
                 ":" + minute +
-                ":" + second ;
+                ":" + second;
     }
 
     public static String systemToString() {
@@ -69,7 +74,7 @@ public class Date {
                 "/" + getSystemDay() +
                 " " + getSystemHour() +
                 ":" + getSystemMinute() +
-                ":" + getSystemSecond() ;
+                ":" + getSystemSecond();
     }
 
 
