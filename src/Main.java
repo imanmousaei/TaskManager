@@ -1,7 +1,10 @@
 import model.*;
+import java.util.ArrayList;
 
 public class Main {
+    public static ArrayList<Task> tasks;
+
     public static void main(String[] args){
-        System.out.println(Date.systemToString());
+        IO.printHelp(System.out);
     }
 }
