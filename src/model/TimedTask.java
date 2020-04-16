@@ -11,6 +11,11 @@ public class TimedTask extends NormalTask {
         this.deadline = deadline;
     }
 
+    public TimedTask(NormalTask normalTask, Date deadline) {
+        super(normalTask.getTitle(), normalTask.getDescription());
+        this.deadline = deadline;
+    }
+
     public Date getDeadline() {
         return deadline;
     }

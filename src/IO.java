@@ -1,4 +1,4 @@
-import model.Commands;
+import model.*;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -37,11 +37,49 @@ public class IO {
     private static void processRemove(Scanner cin, PrintStream out) {
         int taskId = cin.nextInt();
         Main.tasks.remove(taskId);
-        out.println("Task " + taskId + " removed successfully." );
+        out.println("Task " + taskId + " removed successfully.");
     }
 
     private static void processCreate(Scanner cin, PrintStream out) {
-        // TODO
+        String taskType = cin.next();
+
+        taskType = taskType.substring(1);
+        if (taskType.equals(Commands.NormalTask)) {
+            Main.addNormalTask(getNormalTaskFromInput(cin, out));
+        }
+        else if (taskType.equals(Commands.TimedTask)) {
+            Main.addNormalTask(getTimedTaskFromInput(cin, out));
+        }
+        else if (taskType.equals(Commands.CheckList)) {
+            Main.addNormalTask(getCheckListFromInput(cin, out));
+        }
+        else if (taskType.equals(Commands.PrintAllTasks)) {
+            Main.printAllTasks(out);
+        }
+    }
+
+    private static NormalTask getNormalTaskFromInput(Scanner cin, PrintStream out) {
+        out.print("Enter Task Title : ");
+        String title = cin.next();
+        out.print("Enter Task Description : ");
+        String description = cin.next();
+        return new NormalTask(title, description);
+    }
+
+    private static TimedTask getTimedTaskFromInput(Scanner cin, PrintStream out) {
+        NormalTask normalTask = getNormalTaskFromInput(cin, out);
+        out.print("Enter Deadline Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
+        int year = cin.nextInt();
+        int month = cin.nextInt();
+        int day = cin.nextInt();
+        int hour = cin.nextInt();
+        int minute = cin.nextInt();
+        int second = cin.nextInt();
+        return new TimedTask(normalTask, new Date(year, month, day, hour, minute, second));
+    }
+
+    private static CheckList getCheckListFromInput(Scanner cin, PrintStream out) {
+        return (CheckList) getNormalTaskFromInput(cin, out);
     }
 
 
