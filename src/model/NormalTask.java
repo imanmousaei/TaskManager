@@ -1,6 +1,6 @@
 package model;
 
-public class NormalTask extends Task{
+public class NormalTask{
     protected String title;
     protected String description;
     protected TaskStatus status;
