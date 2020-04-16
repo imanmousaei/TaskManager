@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Date {
     private int year;
@@ -75,6 +76,16 @@ public class Date {
                 " " + getSystemHour() +
                 ":" + getSystemMinute() + "\'" +
                 ":" + getSystemSecond() + "\"";
+    }
+
+    public static Date getDateFromInput(Scanner cin) {
+        int year = cin.nextInt();
+        int month = cin.nextInt();
+        int day = cin.nextInt();
+        int hour = cin.nextInt();
+        int minute = cin.nextInt();
+        int second = cin.nextInt();
+        return new Date(year, month, day, hour, minute, second);
     }
 
 

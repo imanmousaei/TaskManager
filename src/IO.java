@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+import static model.Date.getDateFromInput;
 
 public class IO {
     public static void printHelp(PrintStream out) {
@@ -38,7 +39,7 @@ public class IO {
     private static void processEdit(Scanner cin, PrintStream out) {
         int taskId = cin.nextInt();
         out.println(Main.tasks.get(taskId).toString());
-        Main.tasks.get(taskId).editTask(cin,out);
+        Main.tasks.get(taskId).editTask(cin, out);
 
     }
 
@@ -66,22 +67,18 @@ public class IO {
 
     private static NormalTask getNormalTaskFromInput(Scanner cin, PrintStream out) {
         out.println("Enter Task Title : ");
+        cin.nextLine();
         String title = cin.nextLine();
         out.println("Enter Task Description : ");
         String description = cin.nextLine();
-        return new NormalTask(Main.getTaskId(),title, description);
+        return new NormalTask(Main.getTaskId(), title, description);
     }
 
     private static TimedTask getTimedTaskFromInput(Scanner cin, PrintStream out) {
         NormalTask normalTask = getNormalTaskFromInput(cin, out);
-        out.println("Enter Deadline Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
-        int year = cin.nextInt();
-        int month = cin.nextInt();
-        int day = cin.nextInt();
-        int hour = cin.nextInt();
-        int minute = cin.nextInt();
-        int second = cin.nextInt();
-        return new TimedTask(normalTask, new Date(year, month, day, hour, minute, second));
+        out.println("Enter Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
+        Date date = getDateFromInput(cin);
+        return new TimedTask(normalTask, date);
     }
 
     private static CheckList getCheckListFromInput(Scanner cin, PrintStream out) {

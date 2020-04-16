@@ -1,6 +1,9 @@
 package model;
 
 import java.io.PrintStream;
+import java.util.Scanner;
+import static model.Date.getDateFromInput;
+
 
 public class TimedTask extends NormalTask {
     protected Date deadline = new Date();
@@ -35,6 +38,20 @@ public class TimedTask extends NormalTask {
                 ", status = " + status +
                 ", deadline = " + deadline.toString() +
                 " }";
+    }
+
+    public void editTask(Scanner cin, PrintStream out) {
+        super.printEdithelp(out);
+        out.println("4.deadline");
+        int editId = cin.nextInt();
+        if(editId<=3) {
+            super.processEditId(editId, cin, out);
+        }
+        else{
+            out.println("Enter new Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
+            Date newDeadline = getDateFromInput(cin);
+            this.deadline = newDeadline;
+        }
     }
 
 }
