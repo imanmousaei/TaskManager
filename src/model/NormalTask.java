@@ -2,18 +2,28 @@ package model;
 
 import java.io.PrintStream;
 
-public class NormalTask{
+public class NormalTask {
     protected String title;
     protected String description;
     protected TaskStatus status;
+    protected int taskId;
 
     public NormalTask() {
     }
 
-    public NormalTask(String title, String description) {
+    public NormalTask(int taskId, String title, String description) {
         this.title = title;
         this.description = description;
         this.status = TaskStatus.incomplete;
+        this.taskId = taskId;
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     public String getTitle() {
@@ -42,14 +52,15 @@ public class NormalTask{
 
     @Override
     public String toString() {
-        return "NormalTask{" +
+        return "taskId = " + taskId +
+                " -> NormalTask{" +
                 " title = " + title +
                 ", description = " + description +
                 ", status = " + status +
                 " }";
     }
 
-    public void printTask(PrintStream out){
+    public void printTask(PrintStream out) {
         out.println(this.toString());
     }
 

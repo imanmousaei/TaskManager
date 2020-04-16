@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class CheckList extends NormalTask {
     private ArrayList<TimedTask> list = new ArrayList<>();
 
-    public CheckList(String title, String description) {
-        super(title,description);
+    public CheckList(int taskId, String title, String description) {
+        super(taskId, title, description);
+    }
+
+    public CheckList(NormalTask normalTask) {
+        super(normalTask.getTaskId(), normalTask.getTitle(), normalTask.getDescription());
     }
 
     public void addItem(TimedTask task) {
@@ -19,13 +23,14 @@ public class CheckList extends NormalTask {
 
     @Override
     public String toString() {
-        String string = "CheckList{" +
-                "title = " + title +
+        String string = "taskId = " + taskId +
+                " -> CheckList{" +
+                " title = " + title +
                 ", description = " + description +
                 ", status = " + status +
-                '}';
-        for(TimedTask tt:list){
-            string = string.concat(tt.toString());
+                " }\n";
+        for (TimedTask tt : list) {
+            string = string + "\t" + tt.toString() + "\n";
         }
         return string;
     }

@@ -73,8 +73,8 @@ public class Date {
                 "/" + getSystemMonth() +
                 "/" + getSystemDay() +
                 " " + getSystemHour() +
-                ":" + getSystemMinute() +
-                ":" + getSystemSecond();
+                ":" + getSystemMinute() + "\'" +
+                ":" + getSystemSecond() + "\"";
     }
 
 

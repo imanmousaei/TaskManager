@@ -18,7 +18,7 @@ public class IO {
 
     public static void processInput(InputStream in, PrintStream out) {
         Scanner cin = new Scanner(in);
-        while(cin.hasNext()) {
+        while (cin.hasNext()) {
             String input = cin.next();
             if (input.equals(Commands.CREATE)) {
                 processCreate(cin, out);
@@ -38,6 +38,8 @@ public class IO {
     private static void processEdit(Scanner cin, PrintStream out) {
         int taskId = cin.nextInt();
         out.println(Main.tasks.get(taskId).toString());
+        //TODO
+
     }
 
     private static void processRemove(Scanner cin, PrintStream out) {
@@ -67,7 +69,7 @@ public class IO {
         String title = cin.next();
         out.println("Enter Task Description : ");
         String description = cin.next();
-        NormalTask normalTask = new NormalTask(title, description);
+        NormalTask normalTask = new NormalTask(Main.getTaskId(),title, description);
         return normalTask;
     }
 
@@ -84,7 +86,7 @@ public class IO {
     }
 
     private static CheckList getCheckListFromInput(Scanner cin, PrintStream out) {
-        return (CheckList) getNormalTaskFromInput(cin, out);
+        return new CheckList(getNormalTaskFromInput(cin, out));
     }
 
 

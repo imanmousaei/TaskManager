@@ -8,13 +8,13 @@ public class TimedTask extends NormalTask {
     public TimedTask() {
     }
 
-    public TimedTask(String title, String description, Date deadline) {
-        super(title, description);
+    public TimedTask(int taskId, String title, String description, Date deadline) {
+        super(taskId, title, description);
         this.deadline = deadline;
     }
 
     public TimedTask(NormalTask normalTask, Date deadline) {
-        super(normalTask.getTitle(), normalTask.getDescription());
+        super(normalTask.getTaskId(), normalTask.getTitle(), normalTask.getDescription());
         this.deadline = deadline;
     }
 
@@ -28,12 +28,13 @@ public class TimedTask extends NormalTask {
 
     @Override
     public String toString() {
-        return "TimedTask{" +
-                "title = " + title +
+        return "taskId = " + taskId +
+                " -> TimedTask{" +
+                " title = " + title +
                 ", description = " + description +
                 ", status = " + status +
                 ", deadline = " + deadline.toString() +
-                '}';
+                " }";
     }
 
 }
