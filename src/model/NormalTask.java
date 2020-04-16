@@ -1,6 +1,7 @@
 package model;
 
 import java.io.PrintStream;
+import java.util.Scanner;
 
 public class NormalTask {
     protected String title;
@@ -16,6 +17,36 @@ public class NormalTask {
         this.description = description;
         this.status = TaskStatus.incomplete;
         this.taskId = taskId;
+    }
+
+    public void editTask(Scanner cin, PrintStream out) {
+        out.println("What do you want to edit? 1.title 2.description 3.status");
+        int editId = cin.nextInt();
+        processEditId(editId, cin, out);
+    }
+
+    public void processEditId(int editId, Scanner cin, PrintStream out) {
+        if (editId == 1) {
+            out.println("Enter the new title : ");
+            this.title = cin.next();
+        }
+        else if (editId == 2) {
+            out.println("Enter the new description : ");
+            this.description = cin.nextLine();
+        }
+        else if (editId == 3) {
+            out.println("Choose the new status : 1.completed 2.incomplete 3.ignored");
+            int st = cin.nextInt();
+            if (st == 1) {
+                this.status = TaskStatus.completed;
+            }
+            else if (st == 2) {
+                this.status = TaskStatus.incomplete;
+            }
+            else if (st == 3) {
+                this.status = TaskStatus.ignored;
+            }
+        }
     }
 
     public int getTaskId() {

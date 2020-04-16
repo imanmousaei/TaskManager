@@ -38,7 +38,7 @@ public class IO {
     private static void processEdit(Scanner cin, PrintStream out) {
         int taskId = cin.nextInt();
         out.println(Main.tasks.get(taskId).toString());
-        //TODO
+        Main.tasks.get(taskId).editTask(cin,out);
 
     }
 
@@ -66,11 +66,10 @@ public class IO {
 
     private static NormalTask getNormalTaskFromInput(Scanner cin, PrintStream out) {
         out.println("Enter Task Title : ");
-        String title = cin.next();
+        String title = cin.nextLine();
         out.println("Enter Task Description : ");
-        String description = cin.next();
-        NormalTask normalTask = new NormalTask(Main.getTaskId(),title, description);
-        return normalTask;
+        String description = cin.nextLine();
+        return new NormalTask(Main.getTaskId(),title, description);
     }
 
     private static TimedTask getTimedTaskFromInput(Scanner cin, PrintStream out) {
