@@ -43,10 +43,10 @@ public class NormalTask{
     @Override
     public String toString() {
         return "NormalTask{" +
-                "title='" + title + " : " +
-                ", description='" + description + " , " +
-                ", status=" + status +
-                '}';
+                " title = " + title +
+                ", description = " + description +
+                ", status = " + status +
+                " }";
     }
 
     public void printTask(PrintStream out){

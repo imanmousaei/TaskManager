@@ -29,6 +29,9 @@ public class IO {
             else if (input.equals(Commands.EDIT)) {
                 processEdit(cin, out);
             }
+            else if (input.equals(Commands.PrintAllTasks)) {
+                Main.printAllTasks(out);
+            }
         }
     }
 
@@ -56,9 +59,7 @@ public class IO {
         else if (taskType.equals(Commands.CheckList)) {
             Main.addCheckList(getCheckListFromInput(cin, out));
         }
-        else if (taskType.equals(Commands.PrintAllTasks)) {
-            Main.printAllTasks(out);
-        }
+        out.println("Task added successfully.");
     }
 
     private static NormalTask getNormalTaskFromInput(Scanner cin, PrintStream out) {
@@ -72,7 +73,7 @@ public class IO {
 
     private static TimedTask getTimedTaskFromInput(Scanner cin, PrintStream out) {
         NormalTask normalTask = getNormalTaskFromInput(cin, out);
-        out.print("Enter Deadline Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
+        out.println("Enter Deadline Deadline in the following format: Year month day hour minute second e.g. 2020 7 13 11 30 0");
         int year = cin.nextInt();
         int month = cin.nextInt();
         int day = cin.nextInt();

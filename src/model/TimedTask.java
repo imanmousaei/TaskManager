@@ -29,10 +29,10 @@ public class TimedTask extends NormalTask {
     @Override
     public String toString() {
         return "TimedTask{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", deadline=" + deadline +
+                "title = " + title +
+                ", description = " + description +
+                ", status = " + status +
+                ", deadline = " + deadline.toString() +
                 '}';
     }
 
