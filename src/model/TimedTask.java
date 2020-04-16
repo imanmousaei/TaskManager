@@ -1,5 +1,7 @@
 package model;
 
+import java.io.PrintStream;
+
 public class TimedTask extends NormalTask {
     protected Date deadline = new Date();
 
@@ -23,4 +25,15 @@ public class TimedTask extends NormalTask {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+    @Override
+    public String toString() {
+        return "TimedTask{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", deadline=" + deadline +
+                '}';
+    }
+
 }

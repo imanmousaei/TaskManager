@@ -17,4 +17,16 @@ public class CheckList extends NormalTask {
         return list.get(index);
     }
 
+    @Override
+    public String toString() {
+        String string = "CheckList{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
+        for(TimedTask tt:list){
+            string = string.concat(tt.toString());
+        }
+        return string;
+    }
 }

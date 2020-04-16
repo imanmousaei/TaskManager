@@ -11,21 +11,24 @@ public class IO {
                 "Create New Task: " + Commands.CREATE + " -" +
                         Commands.NormalTask + "/" + Commands.TimedTask + "/" + Commands.CheckList +
                         " \nRemove: " + Commands.REMOVE + " taskId" +
-                        " \nEdit: " + Commands.EDIT + " taskId"
+                        " \nEdit: " + Commands.EDIT + " taskId" +
+                        " \nPrint All Tasks : " + Commands.PrintAllTasks
         );
     }
 
     public static void processInput(InputStream in, PrintStream out) {
         Scanner cin = new Scanner(in);
-        String input = cin.next();
-        if (input.equals(Commands.CREATE)) {
-            processCreate(cin, out);
-        }
-        else if (input.equals(Commands.REMOVE)) {
-            processRemove(cin, out);
-        }
-        else if (input.equals(Commands.EDIT)) {
-            processEdit(cin, out);
+        while(cin.hasNext()) {
+            String input = cin.next();
+            if (input.equals(Commands.CREATE)) {
+                processCreate(cin, out);
+            }
+            else if (input.equals(Commands.REMOVE)) {
+                processRemove(cin, out);
+            }
+            else if (input.equals(Commands.EDIT)) {
+                processEdit(cin, out);
+            }
         }
     }
 
@@ -48,10 +51,10 @@ public class IO {
             Main.addNormalTask(getNormalTaskFromInput(cin, out));
         }
         else if (taskType.equals(Commands.TimedTask)) {
-            Main.addNormalTask(getTimedTaskFromInput(cin, out));
+            Main.addTimedTask(getTimedTaskFromInput(cin, out));
         }
         else if (taskType.equals(Commands.CheckList)) {
-            Main.addNormalTask(getCheckListFromInput(cin, out));
+            Main.addCheckList(getCheckListFromInput(cin, out));
         }
         else if (taskType.equals(Commands.PrintAllTasks)) {
             Main.printAllTasks(out);
@@ -59,11 +62,12 @@ public class IO {
     }
 
     private static NormalTask getNormalTaskFromInput(Scanner cin, PrintStream out) {
-        out.print("Enter Task Title : ");
+        out.println("Enter Task Title : ");
         String title = cin.next();
-        out.print("Enter Task Description : ");
+        out.println("Enter Task Description : ");
         String description = cin.next();
-        return new NormalTask(title, description);
+        NormalTask normalTask = new NormalTask(title, description);
+        return normalTask;
     }
 
     private static TimedTask getTimedTaskFromInput(Scanner cin, PrintStream out) {

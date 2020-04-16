@@ -1,5 +1,7 @@
 package model;
 
+import java.io.PrintStream;
+
 public class NormalTask{
     protected String title;
     protected String description;
@@ -45,6 +47,10 @@ public class NormalTask{
                 ", description='" + description + " , " +
                 ", status=" + status +
                 '}';
+    }
+
+    public void printTask(PrintStream out){
+        out.println(this.toString());
     }
 
 }
