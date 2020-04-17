@@ -1,3 +1,6 @@
+package Main;
+
+import IO.TaskIO;
 import model.*;
 
 import java.io.PrintStream;
@@ -8,21 +11,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-        IO.printHelp(System.out);
+        TaskIO.printHelp(System.out);
 
-        IO.processInput(System.in, System.out);
+        TaskIO.processInput(System.in, System.out);
 
     }
 
-    public static void addNormalTask(NormalTask task) {
-        tasks.add(task);
-    }
-
-    public static void addTimedTask(TimedTask task) {
-        tasks.add(task);
-    }
-
-    public static void addCheckList(CheckList task) {
+    public static void addTask(NormalTask task) {
         tasks.add(task);
     }
 
@@ -32,7 +27,7 @@ public class Main {
         }
     }
 
-    public static int getTaskId(){
+    public static int getTaskId() {
         return tasks.size();
     }
 }

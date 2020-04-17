@@ -19,19 +19,19 @@ public class NormalTask {
         this.taskId = taskId;
     }
 
-    public void printEdithelp(PrintStream out){
+    protected void printEditHelp(PrintStream out) {
         out.print("What do you want to edit? 1.title 2.description 3.status ");
     }
 
     public void editTask(Scanner cin, PrintStream out) {
-        printEdithelp(out);
+        printEditHelp(out);
         out.println();
         int editId = cin.nextInt();
         processEditId(editId, cin, out);
         out.println("Task edited successfully.");
     }
 
-    public void processEditId(int editId, Scanner cin, PrintStream out) {
+    protected void processEditId(int editId, Scanner cin, PrintStream out) {
         if (editId == 1) {
             out.println("Enter the new title : ");
             this.title = cin.next();
@@ -100,5 +100,7 @@ public class NormalTask {
     public void printTask(PrintStream out) {
         out.println(this.toString());
     }
+
+
 
 }
