@@ -31,7 +31,7 @@ public class CheckList extends TimedTask {
         return list.get(index);
     }
 
-    public ArrayList<NormalTask> readAllItems() {
+    public ArrayList<NormalTask> getAllItems() {
         return list;
     }
 

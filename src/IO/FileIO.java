@@ -51,7 +51,7 @@ public class FileIO {
         writeToFile(hashedPassword + "\n");
         for (NormalTask t : tasksToWrite) {
             if (t.getClass() == CheckList.class) {
-                writeTimedTask((CheckList) t);
+                writeCheckList((CheckList) t);
             }
             else if (t.getClass() == TimedTask.class) {
                 writeTimedTask((TimedTask) t);
@@ -64,18 +64,19 @@ public class FileIO {
 
 
     private void writeNormalTask(NormalTask t) {
-        appendToFile("NormalTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() + "\n");
+        appendToFile("NormalTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " +
+                t.getDescription() + " ~ " + t.getStatus() + "\n");
     }
 
     private void writeTimedTask(TimedTask t) {
-        appendToFile("TimedTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() +
-                t.getDeadline().toStringSimple() + "\n");
+        appendToFile("TimedTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() + " ~ " +
+                t.getStatus() + " ~ " + t.getDeadline().toStringSimple() + "\n");
     }
 
     private void writeCheckList(CheckList t) {
-        appendToFile("CheckList ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() +
-                t.getDeadline().toStringSimple() + "\n");
-        writeAllTasksToFile(t.readAllItems());
+        appendToFile("CheckList ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() + " ~ " +
+                t.getStatus() + " ~ " + t.getDeadline().toStringSimple() + "\n");
+        writeAllTasksToFile(t.getAllItems());
     }
 
     public int readFirstInt() {
