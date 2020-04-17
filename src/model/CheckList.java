@@ -1,5 +1,7 @@
 package model;
 
+import IO.*;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,6 +33,10 @@ public class CheckList extends TimedTask {
 
     public void removeItem(int index){
         list.remove(index);
+    }
+
+    public int getTaskIndex(){
+        return list.size();
     }
 
     @Override
@@ -70,7 +76,8 @@ public class CheckList extends TimedTask {
             super.processEditId(editId, cin, out);
         }
         else  {
-
+            TaskIO.printHelp(out);
+            ItemIO.processInputCheckList(this,cin,out);
         }
     }
 

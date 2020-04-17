@@ -4,7 +4,6 @@ import Main.Main;
 import model.CheckList;
 import model.Commands;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -12,8 +11,7 @@ public class ItemIO {
 
     public ItemIO(){}
 
-    public static void processInputCheckList(CheckList checkList, InputStream in, PrintStream out) {
-        Scanner cin = new Scanner(in);
+    public static void processInputCheckList(CheckList checkList, Scanner cin, PrintStream out) {
         String input = cin.next();
         if (input.equals(Commands.CREATE)) {
             processCreate( checkList,cin, out);
@@ -35,13 +33,13 @@ public class ItemIO {
 
         taskType = taskType.substring(1);
         if (taskType.equals(Commands.NormalTask)) {
-            checkList.addItem(TaskIO.getNormalTaskFromInput(Main.getTaskId(), cin, out));
+            checkList.addItem(TaskIO.getNormalTaskFromInput(checkList.getTaskIndex(), cin, out));
         }
         else if (taskType.equals(Commands.TimedTask)) {
-            checkList.addItem(TaskIO.getTimedTaskFromInput(Main.getTaskId(), cin, out));
+            checkList.addItem(TaskIO.getTimedTaskFromInput(checkList.getTaskIndex(), cin, out));
         }
         else if (taskType.equals(Commands.CheckList)) {
-            checkList.addItem(TaskIO.getCheckListFromInput(Main.getTaskId(), cin, out));
+            checkList.addItem(TaskIO.getCheckListFromInput(checkList.getTaskIndex(), cin, out));
         }
         out.println("Task added successfully.");
     }

@@ -1,6 +1,6 @@
 package Main;
 
-import IO.TaskIO;
+import IO.*;
 import model.*;
 
 import java.io.PrintStream;
