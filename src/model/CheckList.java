@@ -23,6 +23,11 @@ public class CheckList extends TimedTask {
         super(timedTask.getTaskId(), timedTask.getTitle(), timedTask.getDescription(), timedTask.getDeadline());
     }
 
+    public CheckList(TimedTask timedTask,ArrayList<NormalTask> list) {
+        super(timedTask.getTaskId(), timedTask.getTitle(), timedTask.getDescription(), timedTask.getDeadline());
+        this.list = list;
+    }
+
     public void addItem(NormalTask task) {
         list.add(task);
     }

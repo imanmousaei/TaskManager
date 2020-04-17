@@ -25,7 +25,7 @@ public class Main {
 
         FileIO userFile = new FileIO(  username + ".txt");
         if(userFile.isPasswordCorrect(hash(password))) {
-//            tasks = userFile.readAllTasksFromFile();
+            tasks = userFile.readAllTasksFromFile();
         }
         else{
             try {
@@ -49,8 +49,11 @@ public class Main {
     }
 
     public static void printAllTasks(PrintStream out) {
+        int taskId = 0;
         for (NormalTask t : tasks) {
+            t.setTaskId(taskId);
             t.printTask(out);
+            taskId++;
         }
     }
 

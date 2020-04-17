@@ -69,13 +69,13 @@ public class Date {
                 ":" + second;
     }
 
-    public String toStringSimple() {
+    public String toStringSplitBy(String splitBy) {
         return year +
-                " " + month +
-                " " + day +
-                " " + hour +
-                " " + minute +
-                " " + second;
+                splitBy + month +
+                splitBy + day +
+                splitBy + hour +
+                splitBy + minute +
+                splitBy + second;
     }
 
     public static String systemToString() {

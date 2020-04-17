@@ -2,7 +2,9 @@ package IO;
 
 import Main.Main;
 import model.CheckList;
+import model.Date;
 import model.NormalTask;
+import model.TaskStatus;
 import model.TimedTask;
 
 import java.io.*;
@@ -14,6 +16,7 @@ public class FileIO {
     private Scanner scanner;
     boolean isNewFile = false;
     private String hashedPassword;
+    private String splitBy = " ~` ";
 
     public FileIO(String fileName) {
         this.fileName = fileName;
@@ -34,49 +37,110 @@ public class FileIO {
             return true;
         }
         else {
-            return scanner.nextLine().equals(Main.hash(pass));
+            hashedPassword = Main.hash(pass);
+            return scanner.nextLine().equals(hashedPassword);
         }
     }
 
     public ArrayList<NormalTask> readAllTasksFromFile() {
         ArrayList<NormalTask> readTasks = new ArrayList<>();
+        if(isNewFile){
+            return readTasks;
+        }
         while (scanner.hasNextLine()) {
             String data = scanner.nextLine();
-//            readTasks.add(get) TODO
+            readTasks.add(extractTask(data));
         }
         return readTasks;
+    }
+
+    private NormalTask extractTask(String data) {
+        if (data.charAt(0) == 'N') {
+            return extractNormalTask(data);
+        }
+        else if (data.charAt(0) == 'T') {
+            return extractTimedTask(data);
+        }
+        else if (data.charAt(0) == 'C') {
+            return extractCheckList(data);
+        }
+        return null;
+    }
+
+
+    private NormalTask extractNormalTask(String s) {
+        String[] data = s.split(splitBy,5);
+        int id = Integer.parseInt(data[1]);
+        TaskStatus state = parseStatus(data[4]);
+        return new NormalTask(id, data[2], data[3], state);
+    }
+
+    private TimedTask extractTimedTask(String s) {
+        String[] data = s.split(splitBy,11);
+        int year = Integer.parseInt(data[5]);
+        int month = Integer.parseInt(data[6]);
+        int day = Integer.parseInt(data[7]);
+        int hour = Integer.parseInt(data[8]);
+        int minute = Integer.parseInt(data[9]);
+        int second = Integer.parseInt(data[10]);
+        Date date = new Date(year, month, day, hour, minute, second);
+
+        return new TimedTask(extractNormalTask(s),date);
+    }
+
+    private CheckList extractCheckList(String s) {
+        ArrayList<NormalTask> list = new ArrayList<>();
+        String input = scanner.nextLine();
+        while(!input.equals("</checklist>")){
+            list.add(extractTask(input));
+        }
+        return new CheckList(extractTimedTask(s),list);
+    }
+
+    private TaskStatus parseStatus(String status) {
+        if (status.equals("completed")) {
+            return TaskStatus.completed;
+        }
+        else if (status.equals("incomplete")) {
+            return TaskStatus.incomplete;
+        }
+        else if (status.equals("ignored")) {
+            return TaskStatus.ignored;
+        }
+        return null;
     }
 
     public void writeAllTasksToFile(ArrayList<NormalTask> tasksToWrite) {
         writeToFile(hashedPassword + "\n");
         for (NormalTask t : tasksToWrite) {
             if (t.getClass() == CheckList.class) {
-                writeCheckList((CheckList) t);
+                appendCheckList((CheckList) t);
             }
             else if (t.getClass() == TimedTask.class) {
-                writeTimedTask((TimedTask) t);
+                appendTimedTask((TimedTask) t);
             }
             else {
-                writeNormalTask(t);
+                appendNormalTask(t);
             }
         }
     }
 
 
-    private void writeNormalTask(NormalTask t) {
-        appendToFile("NormalTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " +
-                t.getDescription() + " ~ " + t.getStatus() + "\n");
+    private void appendNormalTask(NormalTask t) {
+        appendToFile("N" + splitBy + t.getTaskId() + splitBy + t.getTitle() + splitBy +
+                t.getDescription() + splitBy + t.getStatus() + "\n");
     }
 
-    private void writeTimedTask(TimedTask t) {
-        appendToFile("TimedTask ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() + " ~ " +
-                t.getStatus() + " ~ " + t.getDeadline().toStringSimple() + "\n");
+    private void appendTimedTask(TimedTask t) {
+        appendToFile("T" + splitBy + t.getTaskId() + splitBy + t.getTitle() + splitBy + t.getDescription() + splitBy +
+                t.getStatus() + splitBy + t.getDeadline().toStringSplitBy(splitBy) + "\n");
     }
 
-    private void writeCheckList(CheckList t) {
-        appendToFile("CheckList ~ " + t.getTaskId() + " ~ " + t.getTitle() + " ~ " + t.getDescription() + " ~ " +
-                t.getStatus() + " ~ " + t.getDeadline().toStringSimple() + "\n");
-        writeAllTasksToFile(t.getAllItems());
+    private void appendCheckList(CheckList t) {
+        appendToFile("C" + splitBy + t.getTaskId() + splitBy + t.getTitle() + splitBy + t.getDescription() + splitBy +
+                t.getStatus() + splitBy + t.getDeadline().toStringSplitBy(splitBy) + "\n");
+        writeAllTasksToFile( t.getAllItems());
+        appendToFile("</checklist>\n");
     }
 
     public int readFirstInt() {

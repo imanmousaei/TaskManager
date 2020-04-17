@@ -19,6 +19,13 @@ public class NormalTask {
         this.taskId = taskId;
     }
 
+    public NormalTask(int taskId, String title, String description,TaskStatus status) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.taskId = taskId;
+    }
+
     protected void printEditHelp(PrintStream out) {
         out.print("What do you want to edit? 1.title 2.description 3.status ");
     }
