@@ -28,7 +28,13 @@ public class Main {
 //            tasks = userFile.readAllTasksFromFile();
         }
         else{
-            System.out.println("Wrong Password");
+            try {
+                throw new IllegalAccessException("Wrong Password");
+            }
+            catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return;
         }
         TaskIO.printHelp(System.out);
 

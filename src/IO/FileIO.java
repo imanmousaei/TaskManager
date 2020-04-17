@@ -34,7 +34,7 @@ public class FileIO {
             return true;
         }
         else {
-            return scanner.nextLine().equals(pass);
+            return scanner.nextLine().equals(Main.hash(pass));
         }
     }
 
