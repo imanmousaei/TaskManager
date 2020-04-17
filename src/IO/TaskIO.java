@@ -49,7 +49,6 @@ public class TaskIO {
     }
 
     private static void processCreate(Scanner cin, PrintStream out) {
-
         String taskType = cin.next();
 
         taskType = taskType.substring(1);
