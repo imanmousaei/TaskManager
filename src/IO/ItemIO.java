@@ -1,5 +1,6 @@
 package IO;
 
+import Main.Main;
 import model.CheckList;
 import model.Commands;
 
@@ -24,6 +25,12 @@ public class ItemIO {
             int index = cin.nextInt();
             out.println(checkList.readItem(index).toString());
             checkList.readItem(index).editTask(cin, out);
+        }
+        else if (input.equals(Commands.PrintAllTasks)) {
+            Main.printAllTasks(out);
+        }
+        else if(input.equals(Commands.EXIT)){
+            return;
         }
     }
 

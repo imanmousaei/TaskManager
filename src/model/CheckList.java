@@ -56,8 +56,11 @@ public class CheckList extends TimedTask {
                 ", description = " + description +
                 ", status = " + status +
                 " }\n";
+        int id = 0;
         for (NormalTask tt : list) {
+            tt.setTaskId(id);
             string = string + "\t" + tt.toString() + "\n";
+            id++;
         }
         return string;
     }

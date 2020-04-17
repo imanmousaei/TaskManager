@@ -40,6 +40,7 @@ public class Main {
 
         TaskIO.processInput(System.in, System.out);
 
+        userFile.clearFile();
         userFile.writeAllTasksToFile(tasks);
 
     }

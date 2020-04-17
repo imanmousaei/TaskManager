@@ -93,6 +93,7 @@ public class FileIO {
         String input = scanner.nextLine();
         while(!input.equals("</checklist>")){
             list.add(extractTask(input));
+            input = scanner.nextLine();
         }
         return new CheckList(extractTimedTask(s),list);
     }
@@ -110,8 +111,11 @@ public class FileIO {
         return null;
     }
 
-    public void writeAllTasksToFile(ArrayList<NormalTask> tasksToWrite) {
+    public void clearFile(){
         writeToFile(hashedPassword + "\n");
+    }
+
+    public void writeAllTasksToFile(ArrayList<NormalTask> tasksToWrite) {
         for (NormalTask t : tasksToWrite) {
             if (t.getClass() == CheckList.class) {
                 appendCheckList((CheckList) t);
