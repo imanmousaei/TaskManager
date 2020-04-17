@@ -8,5 +8,6 @@ public class Commands {
     public static String TimedTask = "t";
     public static String CheckList = "c";
     public static String PrintAllTasks = "pr";
+    public static String EXIT = "exit";
 
 }

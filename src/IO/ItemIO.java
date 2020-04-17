@@ -1,6 +1,5 @@
 package IO;
 
-import Main.Main;
 import model.CheckList;
 import model.Commands;
 

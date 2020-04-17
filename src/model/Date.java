@@ -69,6 +69,15 @@ public class Date {
                 ":" + second;
     }
 
+    public String toStringSimple() {
+        return year +
+                " " + month +
+                " " + day +
+                " " + hour +
+                " " + minute +
+                " " + second;
+    }
+
     public static String systemToString() {
         return getSystemYear() +
                 "/" + getSystemMonth() +

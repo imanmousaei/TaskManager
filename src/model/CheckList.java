@@ -31,6 +31,10 @@ public class CheckList extends TimedTask {
         return list.get(index);
     }
 
+    public ArrayList<NormalTask> readAllItems() {
+        return list;
+    }
+
     public void removeItem(int index){
         list.remove(index);
     }

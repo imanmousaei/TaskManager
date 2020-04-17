@@ -1,13 +1,12 @@
 package IO;
 
+import Main.Main;
 import model.*;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import Main.*;
 import static model.Date.getDateFromInput;
 
 public class TaskIO {
@@ -18,7 +17,8 @@ public class TaskIO {
                 Commands.NormalTask + "/" + Commands.TimedTask + "/" + Commands.CheckList +
                 " \nRemove: " + Commands.REMOVE + " taskId" +
                 " \nEdit: " + Commands.EDIT + " taskId" +
-                " \nPrint All Tasks : " + Commands.PrintAllTasks
+                " \nPrint All Tasks : " + Commands.PrintAllTasks +
+                " \nSave & Exit : " + Commands.EXIT
         );
     }
 
@@ -42,10 +42,14 @@ public class TaskIO {
             else if (input.equals(Commands.PrintAllTasks)) {
                 Main.printAllTasks(out);
             }
+            else if(input.equals(Commands.EXIT)){
+                return;
+            }
         }
     }
 
     private static void processCreate(Scanner cin, PrintStream out) {
+
         String taskType = cin.next();
 
         taskType = taskType.substring(1);
